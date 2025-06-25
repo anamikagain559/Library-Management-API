@@ -9,7 +9,7 @@ const noteSchema = new Schema({
 
 const Note = model('Note', noteSchema);
 
-// Create Note route
+
 app.post('/create-note', async (req: Request, res: Response) => {
   try {
     const myNote = new Note({
@@ -17,7 +17,7 @@ app.post('/create-note', async (req: Request, res: Response) => {
       content: 'This is the content of my first note.',
     });
 
-    await myNote.save(); // Save to MongoDB
+    await myNote.save(); 
 
     res.status(201).json({
       success: true,
