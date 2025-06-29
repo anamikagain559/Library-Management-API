@@ -1,37 +1,16 @@
 import express,{Application, Request, Response,} from 'express';
-import { Schema,model } from 'mongoose';  
-const app:Application = express()
+import { errorHandler } from '../middlewares/errorHandler';
+import { bookRoutes } from './routes/book.route';
+import { borrowRoutes } from './routes/borrow.route';
+const app = express();
+
 app.use(express.json());
-const noteSchema = new Schema({
-  title: String, 
-  content: String,
- });
 
-const Note = model('Note', noteSchema);
+// Routes
+app.use('/api/books', bookRoutes);
+app.use('/api/borrow', borrowRoutes);
 
-
-app.post('/create-note', async (req: Request, res: Response) => {
-  try {
-    const myNote = new Note({
-      title: 'My First Note',
-      content: 'This is the content of my first note.',
-    });
-
-    await myNote.save(); 
-
-    res.status(201).json({
-      success: true,
-      message: 'Note created successfully',
-      note: myNote,
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to create note', error });
-  }
-});
-
-// Home route
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+// Error handler middleware
+app.use(errorHandler);
 
 export default app;

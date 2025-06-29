@@ -1,7 +1,8 @@
 import { Server } from 'http';
 import app from './app';
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv';
+dotenv.config();
 let server: Server;
 const port = 5000;
 
