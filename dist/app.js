@@ -9,6 +9,9 @@ const book_route_1 = require("./app/routes/book.route");
 const borrow_route_1 = require("./app/routes/borrow.route");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.get('/', (req, res) => {
+    res.send('Welcome to the API library.');
+});
 // Routes
 app.use('/api/books', book_route_1.bookRoutes);
 app.use('/api/borrow', borrow_route_1.borrowRoutes);

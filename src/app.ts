@@ -5,7 +5,9 @@ import { borrowRoutes } from './app/routes/borrow.route';
 const app: Application = express();
 
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.send('Welcome to the API library.');
+});
 // Routes
 app.use('/api/books', bookRoutes);
 app.use('/api/borrow', borrowRoutes);
