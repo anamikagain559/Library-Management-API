@@ -1,5 +1,5 @@
 // src/app/routes/book.route.ts
-import express from 'express';
+import { Router } from 'express';
 import {
   createBook,
   getAllBooks,
@@ -7,22 +7,14 @@ import {
   updateBook,
   deleteBook,
 } from '../controllers/book.controller';
+import { asyncHandler } from '../../utils/asyncHandler';
 
-const router = express.Router();
+const router = Router();
 
-// Create a new book
-router.post('/', createBook);
+router.post('/', asyncHandler(createBook));
+router.get('/', asyncHandler(getAllBooks));
+router.get('/:bookId', asyncHandler(getBookById));
+router.put('/:bookId', asyncHandler(updateBook));
+router.delete('/:bookId', asyncHandler(deleteBook));
 
-// Get all books (with optional filtering/sorting)
-router.get('/', getAllBooks);
-
-// Get book by ID
-router.get('/:bookId', getBookById);
-
-// Update book by ID
-router.put('/:bookId', updateBook);
-
-// Delete book by ID
-router.delete('/:bookId', deleteBook);
-
-export { router as bookRoutes };
+export const bookRoutes = router;

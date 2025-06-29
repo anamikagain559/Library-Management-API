@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app/server.ts",
-    "start": "node ./dist/app/app.js",
-    "build": "tsc"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "start": "node ./dist/app.js",
+    "build": "tsc",
+    "lint": "npx exlint ."
   },
   "keywords": [],
   "author": "",
