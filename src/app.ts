@@ -6,7 +6,10 @@ import cors from "cors";
 const app: Application = express();
 
 app.use(express.json());
-app.use(cors({origin: '*'}));
+app.use(cors({
+  origin: ['http://localhost:5173','https://library-management-zeta-three.vercel.app'],
+  credentials: true,
+}));
 app.get('/', (req, res) => {
   res.send('Welcome to the API library.');
 });
