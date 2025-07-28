@@ -18,7 +18,7 @@ export function errorHandler(
   if (err.name === 'ValidationError') {
     response.error = err.errors || err;
   } else {
-    // For other errors, send the error message or full error object
+  
     response.error = err.message ? { message: err.message } : err;
   }
 
